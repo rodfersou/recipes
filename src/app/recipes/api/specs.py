@@ -2,10 +2,10 @@ from app.recipes.models import Recipe
 from app.recipes.api.models import RecipeAPI, RecipeAPIWithID
 
 
-
 recipe_schema = Recipe.model_json_schema()
 recipe_api_schema = RecipeAPI.model_json_schema()
 recipe_api_with_id_schema = RecipeAPIWithID.model_json_schema()
+
 
 create_recipe = {
   "definitions": {
@@ -39,10 +39,11 @@ create_recipe = {
             "type": "array"
           }
         }
-      },
+      }
     }
   }
 }
+
 
 list_recipes = {
   "definitions": {
@@ -64,6 +65,7 @@ list_recipes = {
     }
   }
 }
+
 
 get_recipe = {
   "definitions": {

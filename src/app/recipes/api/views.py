@@ -4,12 +4,16 @@ from flask import request
 from app.api import app
 from app.recipes.api import specs
 from app.recipes.models import Recipe
+from app.recipes.api.models import RecipeAPI, RecipeAPIWithID
+from app.recipes import handlers
 
 
-@app.route("/recipes/<int:recipe_id>", methods=["POST"])
+@app.route("/recipes", methods=["POST"])
 @swag_from(specs.create_recipe)
-def create_recipe(recipe: Recipe):
-    return recipe_id
+def create_recipe() -> tuple[dict, int]:
+    recipe_request = RecipeAPI(**request.json)
+    recipe = handlers.create_recipe(recipe_request)
+    return recipe.json()
 
 
 @app.route("/recipes")
