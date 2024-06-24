@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = ""
+authors = ["Rodrigo Ferreira de Souza <rodfersou@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flasgger = "^0.9.7.1"
+pydantic = "^2.7.4"
+sqlalchemy = "^2.0.31"
+pymysql = "^1.1.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+pytest-beeprint = "^0.1.2"
+pydantic-factories = "^1.17.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
