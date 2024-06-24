@@ -12,11 +12,13 @@ pydantic = "^2.7.4"
 sqlalchemy = "^2.0.31"
 pymysql = "^1.1.1"
 
-
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.2"
 pytest-beeprint = "^0.1.2"
 pydantic-factories = "^1.17.3"
+
+[tool.poetry.scripts]
+start = "app.api:start"
 
 [build-system]
 requires = ["poetry-core"]
