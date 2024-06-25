@@ -10,7 +10,7 @@ class Base(DeclarativeBase):
     pass
 
 
-class RecipeSA(Base):
+class RecipeDB(Base):
     __tablename__ = "recipe"
 
     id: Mapped[int] = mapped_column(primary_key=True)
