@@ -1,6 +1,5 @@
-from app.recipes.models import Recipe
 from app.recipes.api.models import RecipeAPI, RecipeAPIWithID
-
+from app.recipes.models import Recipe
 
 recipe_schema = Recipe.model_json_schema()
 recipe_api_schema = RecipeAPI.model_json_schema()

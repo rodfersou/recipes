@@ -396,6 +396,30 @@ dev = ["pre-commit", "tox"]
 testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
+name = "polyfactory"
+version = "2.16.0"
+description = "Mock data generation factories"
+optional = false
+python-versions = "<4.0,>=3.8"
+files = [
+    {file = "polyfactory-2.16.0-py3-none-any.whl", hash = "sha256:168d8e50b77e91e35e691e8b3eedac43d7e423a6857fa26d473def96d53f0ecf"},
+    {file = "polyfactory-2.16.0.tar.gz", hash = "sha256:03d8c706b70c4782ac8e637d0f6ab52760a7d11b712da5936a95a8f7022b2688"},
+]
+
+[package.dependencies]
+faker = "*"
+typing-extensions = ">=4.6.0"
+
+[package.extras]
+attrs = ["attrs (>=22.2.0)"]
+beanie = ["beanie", "pydantic[email]"]
+full = ["attrs", "beanie", "msgspec", "odmantic", "pydantic", "sqlalchemy"]
+msgspec = ["msgspec"]
+odmantic = ["odmantic (<1.0.0)", "pydantic[email]"]
+pydantic = ["pydantic[email]"]
+sqlalchemy = ["sqlalchemy (>=1.4.29)"]
+
+[[package]]
 name = "pydantic"
 version = "2.7.4"
 description = "Data validation using Python type hints"
@@ -504,22 +528,6 @@ files = [
 
 [package.dependencies]
 typing-extensions = ">=4.6.0,<4.7.0 || >4.7.0"
-
-[[package]]
-name = "pydantic-factories"
-version = "1.17.3"
-description = "Mock data generation for pydantic based models and python dataclasses"
-optional = false
-python-versions = ">=3.8,<4.0"
-files = [
-    {file = "pydantic_factories-1.17.3-py3-none-any.whl", hash = "sha256:5a1522a31d27e1af414719c510a4a934365292f3ea6fdc843ed65d0564242636"},
-    {file = "pydantic_factories-1.17.3.tar.gz", hash = "sha256:de36e0db7108af5f4328308da9a4049311c4d5e0814553d2f39078b08b05e48d"},
-]
-
-[package.dependencies]
-faker = "*"
-pydantic = ">=1.10.0"
-typing-extensions = "*"
 
 [[package]]
 name = "pymysql"
@@ -933,4 +941,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "1446bd4624090dd42bee66f3d0a3df6b039289b505f796833380ff1dff42b52b"
+content-hash = "ec27eb13afc712c71f7011ab9dd3135311943f307cdf4fbfbc795441fd69a507"

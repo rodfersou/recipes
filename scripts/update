@@ -1,0 +1,5 @@
+#!/bin/bash -e
+cd "$(dirname "$0")/.."
+(./scripts/be/update)
+(./scripts/fe/update)
+(./scripts/site/update)

@@ -1,0 +1,16 @@
+#! /usr/bin/env nix-shell
+#! nix-shell ../shell.nix -i bash
+cd -P "$(dirname "$0")/.."
+TMUX="" tmux new-session '
+  direnv exec "$PWD" \
+    ./scripts/fe/test || true &&
+    read
+' \; split-window -h '
+  trap ctrl_c INT
+  function ctrl_c() {
+    tmux kill-session
+  }
+  direnv exec "$PWD" \
+    ./scripts/be/test || true &&
+    read
+'

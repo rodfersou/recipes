@@ -18,9 +18,11 @@
           name = "dev-environment";
           nativeBuildInputs = [
             python311
-            unstable.poetry
-            unstable.ruff
+            unstable.isort
             unstable.mypy
+            unstable.poetry
+            unstable.pre-commit
+            unstable.ruff
           ] ++ (
             if ("$INSIDE_DOCKER" != "true")
             then [
@@ -59,9 +61,12 @@
             pytest-beeprint = super.pytest-beeprint.overridePythonAttrs(old: {
               buildInputs = (old.buildInputs or [ ]) ++ [ super.setuptools ];
             });
-            pydantic-factories = super.pydantic-factories.overridePythonAttrs(old: {
-              buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+            polyfactory = super.polyfactory.overridePythonAttrs(old: {
+              buildInputs = (old.buildInputs or [ ]) ++ [ super.hatchling ];
             });
+            #pydantic-factories = super.pydantic-factories.overridePythonAttrs(old: {
+            #  buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+            #});
           });
         };
         defaultPackage = packages.app;

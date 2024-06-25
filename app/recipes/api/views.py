@@ -2,10 +2,10 @@ from flasgger import swag_from
 from flask import request
 
 from app.api import app
-from app.recipes.api import specs
-from app.recipes.models import Recipe
-from app.recipes.api.models import RecipeAPI, RecipeAPIWithID
 from app.recipes import handlers
+from app.recipes.api import specs
+from app.recipes.api.models import RecipeAPI
+from app.recipes.models import Recipe
 
 
 @app.route("/recipes", methods=["POST"])

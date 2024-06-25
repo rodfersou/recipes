@@ -1,5 +1,6 @@
-from app.recipes.models import Recipe
 from datetime import datetime
+
+from app.recipes.models import Recipe
 
 
 class RecipeRepository:

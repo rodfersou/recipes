@@ -1,0 +1,24 @@
+#! /usr/bin/env nix develop --command bash
+cd -P "$(dirname "$0")/.."
+
+TMUX="" \
+tmux new-session -e PATH="$PATH" '
+  echo ""                      &&
+  echo "http://localhost:5000" &&
+  read
+' \; split-window -h -p 65 '
+  docker compose up db
+' \; split-window -f -p 80 '
+#  direnv exec . \
+#    poetry run start || true &&
+#    read
+#' \; split-window -h -p 50 '
+  function ctrl_c() {
+    docker compose down
+    tmux kill-session
+  }
+  trap ctrl_c INT
+  direnv exec . \
+    poetry run start || true &&
+    read
+'

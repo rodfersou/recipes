@@ -15,7 +15,7 @@ pymysql = "^1.1.1"
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.2"
 pytest-beeprint = "^0.1.2"
-pydantic-factories = "^1.17.3"
+polyfactory = "^2.16.0"
 
 [tool.poetry.scripts]
 start = "app.api:start"
