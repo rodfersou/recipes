@@ -1,9 +1,9 @@
-from app.recipes.api.models import RecipeAPI
+from app.recipes.api.models import APIRequest, UpdateAPIRequest
 from app.recipes.models import Recipe
 from app.recipes.repository.repository import RecipeRepository
 
 
-def create_recipe(api_request: RecipeAPI) -> Recipe:
+def create_recipe(api_request: APIRequest) -> Recipe:
     repo = RecipeRepository()
     recipe = Recipe(
         title=api_request.title,
@@ -23,3 +23,16 @@ def list_recipes() -> list[Recipe]:
 def get_recipe(recipe_id: int) -> Recipe:
     repo = RecipeRepository()
     return repo.get(recipe_id)
+
+
+def update_recipe(recipe_id: int, api_request: UpdateAPIRequest) -> Recipe:
+    repo = RecipeRepository()
+    return repo.update(
+        recipe_id,
+        api_request.dict(exclude_none=True),
+    )
+
+
+def delete_recipe(recipe_id: int):
+    repo = RecipeRepository()
+    return repo.delete(recipe_id)

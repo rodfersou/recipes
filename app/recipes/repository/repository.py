@@ -58,3 +58,17 @@ class RecipeRepository:
         with Session(engine) as session:
             recipe_db = session.query(RecipeDB).filter_by(id=recipe_id).one()
             return self._from_db(recipe_db)
+
+    def update(self, recipe_id: int, fields: dict) -> Recipe:
+        with Session(engine) as session:
+            recipe_db = session.query(RecipeDB).filter_by(id=recipe_id).one()
+            for key, value in fields.items():
+                setattr(recipe_db, key, value)
+            session.commit()
+            return self._from_db(recipe_db)
+
+    def delete(self, recipe_id: int):
+        with Session(engine) as session:
+            recipe_db = session.query(RecipeDB).filter_by(id=recipe_id).one()
+            session.delete(recipe_db)
+            session.commit()

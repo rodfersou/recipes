@@ -1,13 +1,17 @@
-from app.recipes.api.models import RecipeAPI, RecipeAPIWithID
+from app.recipes.api.models import APIRequest, APIResponse, UpdateAPIRequest
 from app.recipes.models import Recipe
 
 recipe_schema = Recipe.model_json_schema()
-recipe_api_schema = RecipeAPI.model_json_schema()
-recipe_api_with_id_schema = RecipeAPIWithID.model_json_schema()
+api_request_schema = APIRequest.model_json_schema()
+api_response_schema = APIResponse.model_json_schema()
+update_api_request_schema = UpdateAPIRequest.model_json_schema()
 
 
 create_recipe = {
-    "definitions": {"Recipe": recipe_schema, "RecipeAPI": recipe_api_schema},
+    "definitions": {
+        "Recipe": recipe_schema,
+        "APIRequest": api_request_schema,
+    },
     "parameters": [
         {
             "name": "recipe",
@@ -15,7 +19,7 @@ create_recipe = {
             "in": "body",
             "required": "true",
             "schema": {
-                "$ref": "#/definitions/RecipeAPI",
+                "$ref": "#/definitions/APIRequest",
             },
         }
     ],
@@ -24,7 +28,10 @@ create_recipe = {
             "description": "Created Recipe",
             "schema": {
                 "properties": {
-                    "message": {"title": "Message", "type": "string"},
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                    },
                     "recipe": {
                         "items": {
                             "$ref": "#/definitions/Recipe",
@@ -39,7 +46,9 @@ create_recipe = {
 
 
 list_recipes = {
-    "definitions": {"RecipeAPIWithID": recipe_api_with_id_schema},
+    "definitions": {
+        "APIResponse": api_response_schema,
+    },
     "responses": {
         "200": {
             "description": "A list of Recipes",
@@ -47,7 +56,7 @@ list_recipes = {
                 "properties": {
                     "recipes": {
                         "items": {
-                            "$ref": "#/definitions/RecipeAPIWithID",
+                            "$ref": "#/definitions/APIResponse",
                         },
                         "type": "array",
                     }
@@ -59,7 +68,9 @@ list_recipes = {
 
 
 get_recipe = {
-    "definitions": {"RecipeAPIWithID": recipe_api_with_id_schema},
+    "definitions": {
+        "APIResponse": api_response_schema,
+    },
     "parameters": [
         {
             "name": "recipe_id",
@@ -74,10 +85,13 @@ get_recipe = {
             "description": "Requested Recipe",
             "schema": {
                 "properties": {
-                    "message": {"title": "Message", "type": "string"},
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                    },
                     "recipe": {
                         "items": {
-                            "$ref": "#/definitions/RecipeAPIWithID",
+                            "$ref": "#/definitions/APIResponse",
                         },
                         "type": "array",
                     },
@@ -89,7 +103,10 @@ get_recipe = {
 
 
 update_recipe = {
-    "definitions": {"RecipeAPI": recipe_api_schema},
+    "definitions": {
+        "UpdateAPIRequest": update_api_request_schema,
+        "APIRequest": api_request_schema,
+    },
     "parameters": [
         {
             "name": "recipe_id",
@@ -104,7 +121,7 @@ update_recipe = {
             "in": "body",
             "required": "true",
             "schema": {
-                "$ref": "#/definitions/RecipeAPI",
+                "$ref": "#/definitions/UpdateAPIRequest",
             },
         },
     ],
@@ -113,10 +130,13 @@ update_recipe = {
             "description": "Recipe Updated",
             "schema": {
                 "properties": {
-                    "message": {"title": "Message", "type": "string"},
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                    },
                     "recipe": {
                         "items": {
-                            "$ref": "#/definitions/RecipeAPI",
+                            "$ref": "#/definitions/APIRequest",
                         },
                         "type": "array",
                     },
@@ -141,7 +161,12 @@ delete_recipe = {
         "200": {
             "description": "Recipe Deleted",
             "schema": {
-                "properties": {"message": {"title": "Message", "type": "string"}}
+                "properties": {
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                    },
+                }
             },
         }
     },
