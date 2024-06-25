@@ -3,7 +3,7 @@ from app.recipes.models import Recipe
 from app.recipes.repository.repository import RecipeRepository
 
 
-def create_recipe(api_request: RecipeAPI):
+def create_recipe(api_request: RecipeAPI) -> Recipe:
     repo = RecipeRepository()
     recipe = Recipe(
         title=api_request.title,
@@ -15,5 +15,11 @@ def create_recipe(api_request: RecipeAPI):
     return repo.save(recipe)
 
 
-def list_recipes():
-    return []
+def list_recipes() -> list[Recipe]:
+    repo = RecipeRepository()
+    return repo.list()
+
+
+def get_recipe(recipe_id: int) -> Recipe:
+    repo = RecipeRepository()
+    return repo.get(recipe_id)

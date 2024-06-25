@@ -13,7 +13,7 @@ create_recipe = {
             "name": "recipe",
             "description": "Recipe",
             "in": "body",
-            "required": True,
+            "required": "true",
             "schema": {
                 "$ref": "#/definitions/RecipeAPI",
             },
@@ -65,8 +65,8 @@ get_recipe = {
             "name": "recipe_id",
             "description": "Recipe ID",
             "in": "path",
-            "required": True,
-            "type": "int",
+            "required": "true",
+            "type": "integer",
         }
     ],
     "responses": {
@@ -95,14 +95,14 @@ update_recipe = {
             "name": "recipe_id",
             "description": "Recipe ID",
             "in": "path",
-            "required": True,
-            "type": "int",
+            "required": "true",
+            "type": "integer",
         },
         {
             "name": "recipe",
             "description": "Recipe",
             "in": "body",
-            "required": True,
+            "required": "true",
             "schema": {
                 "$ref": "#/definitions/RecipeAPI",
             },
@@ -133,8 +133,8 @@ delete_recipe = {
             "name": "recipe_id",
             "description": "Recipe ID",
             "in": "path",
-            "required": True,
-            "type": "int",
+            "required": "true",
+            "type": "integer",
         }
     ],
     "responses": {

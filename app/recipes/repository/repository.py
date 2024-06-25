@@ -47,3 +47,14 @@ class RecipeRepository:
             session.commit()
 
             return self._from_db(recipe_db)
+
+    def list(self) -> list[Recipe]:
+        with Session(engine) as session:
+            return [
+                self._from_db(recipe_db) for recipe_db in session.query(RecipeDB).all()
+            ]
+
+    def get(self, recipe_id: int) -> Recipe:
+        with Session(engine) as session:
+            recipe_db = session.query(RecipeDB).filter_by(id=recipe_id).one()
+            return self._from_db(recipe_db)

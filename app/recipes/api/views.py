@@ -13,19 +13,32 @@ from app.recipes.models import Recipe
 def create_recipe() -> tuple[dict, int]:
     recipe_request = RecipeAPI(**request.json)
     recipe = handlers.create_recipe(recipe_request)
-    return {"message": "Recipe successfully created!", "recipe": [recipe.dict()]}
+    return {
+        "message": "Recipe successfully created!",
+        "recipe": [
+            recipe.dict(),
+        ],
+    }
 
 
 @app.route("/recipes")
 @swag_from(specs.list_recipes)
 def list_recipes():
-    return handlers.list_recipes()
+    return {
+        "recipes": [recipe.dict() for recipe in handlers.list_recipes()],
+    }
 
 
 @app.route("/recipes/<int:recipe_id>")
 @swag_from(specs.get_recipe)
 def get_recipe(recipe_id: int):
-    return recipe_id
+    recipe = handlers.get_recipe(recipe_id)
+    return {
+        "message": "Recipe details by id",
+        "recipe": [
+            recipe.dict(),
+        ],
+    }
 
 
 @app.route("/recipes/<int:recipe_id>", methods=["PATCH"])
