@@ -6,6 +6,11 @@ from app import config
 app = Flask(__name__)
 
 
+@app.errorhandler(404)
+def page_not_found(error) -> tuple[dict, int]:
+    return {"message": "Not Found"}, 404
+
+
 def get_app_with_views():
     from app.recipes.api import views  # noqa: F401
 

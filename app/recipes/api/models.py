@@ -1,8 +1,9 @@
-from typing import Optional
+from typing import Optional, Self
 
 import pydantic as pd
 
 from app.base.models import Entity
+from app.recipes.models import Recipe
 
 
 class UpdateAPIRequest(Entity):
@@ -20,6 +21,27 @@ class APIRequest(Entity):
     ingredients: str = pd.Field(max_lengh=300)
     cost: int
 
+    @classmethod
+    def from_entity(cls, recipe: Recipe) -> Self:
+        return cls(
+            title=recipe.title,
+            making_time=recipe.making_time,
+            serves=recipe.serves,
+            ingredients=recipe.ingredients,
+            cost=recipe.cost,
+        )
+
 
 class APIResponse(APIRequest):
-    id: Optional[int]
+    id: int
+
+    @classmethod
+    def from_entity(cls, recipe: Recipe) -> Self:
+        return cls(
+            id=recipe.id,
+            title=recipe.title,
+            making_time=recipe.making_time,
+            serves=recipe.serves,
+            ingredients=recipe.ingredients,
+            cost=recipe.cost,
+        )
