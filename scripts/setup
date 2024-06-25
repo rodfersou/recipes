@@ -1,12 +1,5 @@
-#!/bin/bash
+#! /usr/bin/env nix develop --command bash
 cd -P "$(dirname "$0")/.."
 
-# Run setup on each project
-./scripts/site/setup
-./scripts/fe/setup
-./scripts/be/setup
-# Run setup on each project
-
-# Add pre-commit hooks
-./api/.venv/bin/pre-commit install
-# Add pre-commit hooks
+poetry install
+#pre-commit install

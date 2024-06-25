@@ -1,5 +1,4 @@
-#!/bin/bash -e
+#! /usr/bin/env nix develop --command bash
 cd "$(dirname "$0")/.."
-(./scripts/be/update)
-(./scripts/fe/update)
-(./scripts/site/update)
+
+alembic upgrade head
