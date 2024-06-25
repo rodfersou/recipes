@@ -13,26 +13,26 @@ engine = create_engine(config.ORM_URL, echo=config.DEBUG)
 class RecipeRepository:
     def _from_db(self, recipe_db: RecipeDB) -> Recipe:
         return Recipe(
-            id = recipe_db.id,
-            created_at = recipe_db.created_at,
-            updated_at = recipe_db.updated_at,
-            title = recipe_db.title,
-            making_time = recipe_db.making_time,
-            serves = recipe_db.serves,
-            ingredients = recipe_db.ingredients,
-            cost = recipe_db.cost,
+            id=recipe_db.id,
+            created_at=recipe_db.created_at,
+            updated_at=recipe_db.updated_at,
+            title=recipe_db.title,
+            making_time=recipe_db.making_time,
+            serves=recipe_db.serves,
+            ingredients=recipe_db.ingredients,
+            cost=recipe_db.cost,
         )
 
     def _to_db(self, recipe: Recipe) -> RecipeDB:
         return RecipeDB(
-            id = recipe.id,
-            created_at = recipe.created_at,
-            updated_at = recipe.updated_at,
-            title = recipe.title,
-            making_time = recipe.making_time,
-            serves = recipe.serves,
-            ingredients = recipe.ingredients,
-            cost = recipe.cost,
+            id=recipe.id,
+            created_at=recipe.created_at,
+            updated_at=recipe.updated_at,
+            title=recipe.title,
+            making_time=recipe.making_time,
+            serves=recipe.serves,
+            ingredients=recipe.ingredients,
+            cost=recipe.cost,
         )
 
     def save(self, recipe: Recipe) -> Recipe:

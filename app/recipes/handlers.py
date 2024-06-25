@@ -13,3 +13,7 @@ def create_recipe(api_request: RecipeAPI):
         cost=api_request.cost,
     )
     return repo.save(recipe)
+
+
+def list_recipes():
+    return []
