@@ -48,7 +48,7 @@ DOCKER_AFTER
 
 FROM base as builder
 COPY . /app
-RUN <<BASH   bash                                                          \
+RUN <<BASH bash
 # BASH
     nix build
     ./scripts/setup
