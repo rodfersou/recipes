@@ -40,10 +40,8 @@
             ]
           );
           shellHook = ''
-            if [[ $INSIDE_DOCKER == "true" ]]
+            if [[ $INSIDE_DOCKER != "true" ]]
             then
-              export POETRY_CACHE_DIR="/poetry"
-            else
               export POETRY_VIRTUALENVS_IN_PROJECT="true"
             fi
             unset PYTHONPATH

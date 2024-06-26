@@ -1,10 +1,10 @@
 # syntax=docker/dockerfile:1
-FROM ubuntu:22.04
+FROM ubuntu:22.04 as base
 
 ENV PATH="/nix/var/nix/profiles/default/bin:$PATH" \
+    POETRY_CACHE_DIR="/cache/poetry"               \
     INSIDE_DOCKER="true"
 
-COPY . /app
 WORKDIR /app
 
 RUN <<DOCKER_BEFORE   bash                                                          \
@@ -16,7 +16,7 @@ RUN <<DOCKER_BEFORE   bash                                                      
     apt install -y \
         curl
     mkdir -p ~/.config/nix
-    mkdir /poetry
+    mkdir -p /cache/poetry
 DOCKER_BEFORE
 
 # CONFIG NIX_CONF
@@ -36,19 +36,31 @@ CONFIG_NIX_CONF
          --extra-conf "filter-syscalls = false"     \
          --init none                                \
          --no-confirm
-    nix build
-
-    ./scripts/setup
-
-    #mkdir /tmp/nix-store-closure
-    #cp -R $(nix-store -qR result/) /tmp/nix-store-closure
-    #nix-collect-garbage -d
-    #cp -RT /tmp/nix-store-closure /nix/store
 
     # CLEAN
+    nix-collect-garbage -d
     apt-get clean
     apt-get autoremove -y
     rm -rf /var/lib/apt/lists/*
 DOCKER_AFTER
 
+
+
+FROM base as builder
+COPY . /app
+RUN <<BASH   bash                                                          \
+# BASH
+    nix build
+    ./scripts/setup
+
+    mkdir /tmp/nix-store-closure
+    cp -R $(nix-store -qR result/) /tmp/nix-store-closure
+BASH
+
+
+
+FROM base as runner
+COPY . /app
+COPY --from=builder /cache /cache
+COPY --from=builder /tmp/nix-store-closure /nix/store
 CMD ["./scripts/start-prod"]
