@@ -6,15 +6,16 @@ def _run(bash_script):
 
 
 def start_prod():
-    return _run("/app/scripts/start-prod")
+    return _run("alembic upgrade head")
+    return _run("gunicorn -w 4 'app.api:create_app()' --bind 0.0.0.0:5000")
 
 
 def test():
-    return _run("/app/scripts/test")
+    return _run("pytest")
 
 
 def ipython():
-    return _run("/app/scripts/ipython")
+    return _run("ipython")
 
 
 def echo_path():
