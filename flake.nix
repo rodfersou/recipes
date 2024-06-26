@@ -27,6 +27,7 @@
             if ("$INSIDE_DOCKER" != "true")
             then [
               entr
+              flyctl
               httpie
               jq
               lazygit
