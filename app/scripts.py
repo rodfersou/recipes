@@ -6,11 +6,15 @@ def _run(bash_script):
 
 
 def start_prod():
-    return _run("./scripts/start-prod")
+    return _run("/app/scripts/start-prod")
 
 
 def test():
-    return _run("./scripts/test")
+    return _run("/app/scripts/test")
+
+
+def ipython():
+    return _run("/app/scripts/ipython")
 
 
 def echo_path():

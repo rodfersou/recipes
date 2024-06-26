@@ -23,7 +23,7 @@ ipython = "^8.25.0"
 
 [tool.poetry.scripts]
 echo-path = "app.scripts:echo_path"
-ipython = "IPython:start_ipython"
+ipython = "app.scripts:ipython"
 start = "app.api:start"
 start-prod = "app.scripts:start_prod"
 test = "app.scripts:test"
