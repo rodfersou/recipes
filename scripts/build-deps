@@ -1,0 +1,4 @@
+#!/bin/bash
+cd -P "$(dirname "$0")/.."
+
+docker buildx build -f Dockerfile.deps --progress plain --platform linux/amd64 -t recipes-api-deps .
