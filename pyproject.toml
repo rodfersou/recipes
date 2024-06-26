@@ -14,6 +14,7 @@ pymysql = "^1.1.1"
 alembic = "^1.13.1"
 cryptography = "^42.0.8"  # pymysql dependency
 gunicorn = "^22.0.0"
+flask = "^3.0.3"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.2"

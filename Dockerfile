@@ -1,8 +1,7 @@
-FROM recipes-api-deps AS deps
-
-FROM ghcr.io/rodfersou/docker-nix:latest AS runner
-ENV INSIDE_DOCKER="true"
-COPY --from=deps /tmp/nix-store-closure /nix/store
+FROM python:alpine
 COPY . /app
-WORKDIR /app
-CMD ["./scripts/start-prod"]
+RUN pip3 install poetry \
+    poetry install
+WORKDIR app
+ENTRYPOINT \[ "flask" \]
+CMD \[ "run", "-app", "app.api.create_app()", "--host", "0.0.0.0" \]
