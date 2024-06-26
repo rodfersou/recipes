@@ -17,7 +17,6 @@
         devShell = mkShell {
           name = "dev-environment";
           nativeBuildInputs = [
-            bash
             python311
             unstable.isort
             unstable.mypy
@@ -27,13 +26,16 @@
           ] ++ (
             if ("$INSIDE_DOCKER" != "true")
             then [
+              entr
               flyctl
               httpie
               jq
               lazygit
+              ripgrep
               silver-searcher
               tmux
               tree
+              xeus
             ] else [
             ]
           );
@@ -63,6 +65,9 @@
             polyfactory = super.polyfactory.overridePythonAttrs(old: {
               buildInputs = (old.buildInputs or [ ]) ++ [ super.hatchling ];
             });
+            #pydantic-factories = super.pydantic-factories.overridePythonAttrs(old: {
+            #  buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+            #});
           });
         };
         defaultPackage = packages.app;

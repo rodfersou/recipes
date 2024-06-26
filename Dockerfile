@@ -1,7 +1,5 @@
-FROM python:alpine
+FROM ghcr.io/rodfersou/recipes-api-deps:latest AS runner
+ENV INSIDE_DOCKER="true"
 COPY . /app
-RUN pip3 install poetry \
-    poetry install
-WORKDIR app
-ENTRYPOINT \[ "flask" \]
-CMD \[ "run", "--app", "app.api.create_app()", "--host", "0.0.0.0" \]
+WORKDIR /app
+CMD ["./scripts/start-prod"]
