@@ -1,4 +1,4 @@
-FROM ghcr.io/rodfersou/docker-nix:latest AS deps
+FROM nixos/nix:latest AS deps
 ENV INSIDE_DOCKER="true"
 COPY . /tmp/build
 WORKDIR /tmp/build
