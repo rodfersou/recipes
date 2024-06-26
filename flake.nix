@@ -8,14 +8,15 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+    flake-utils.lib.eachDefaultSystem(system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
         unstable = nixpkgs-unstable.legacyPackages.${system};
-      in with pkgs; rec {
-        devShell = mkShell {
+      in
+      with pkgs; {
+        devShells.default = mkShell {
           name = "dev-environment";
-          nativeBuildInputs = [
+          buildInputs = [
             bash
             python311
             unstable.isort

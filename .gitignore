@@ -1,1 +1,4 @@
 result
+.ruff_cache/
+.venv/
+app/recipes/api/.ruff_cache/
