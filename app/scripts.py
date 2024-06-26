@@ -11,3 +11,7 @@ def start_prod():
 
 def test():
     return _run("./scripts/test")
+
+
+def echo_path():
+    return _run("echo $PATH")

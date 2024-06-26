@@ -22,10 +22,11 @@ polyfactory = "^2.16.0"
 ipython = "^8.25.0"
 
 [tool.poetry.scripts]
-start = "app.api:start"
-start-prod = "bash_runner:start_prod"
-test = "bash_runner:test"
+echo-path = "app.scripts:echo_path"
 ipython = "IPython:start_ipython"
+start = "app.api:start"
+start-prod = "app.scripts:start_prod"
+test = "app.scripts:test"
 
 [build-system]
 requires = ["poetry-core"]
