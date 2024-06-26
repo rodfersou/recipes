@@ -1,6 +1,6 @@
 FROM recipes-api-deps AS deps
 
-FROM nixos/nix:latest AS runner
+FROM ghcr.io/rodfersou/docker-nix:latest AS runner
 ENV INSIDE_DOCKER="true"
 COPY --from=deps /tmp/nix-store-closure /nix/store
 COPY . /app
