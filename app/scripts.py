@@ -6,9 +6,7 @@ def _run(bash_script):
 
 
 def start_prod():
-    return _run(
-        "alembic upgrade head && gunicorn -w 4 'app.api:create_app()' --bind 0.0.0.0:5000"
-    )
+    return _run("gunicorn -w 4 'app.api:create_app()' --bind 0.0.0.0:5000")
 
 
 def test():

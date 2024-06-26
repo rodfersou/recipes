@@ -10,11 +10,9 @@ RUN nix                                                   \
  && cp -R $(nix-store -qR result/) /tmp/nix-store-closure
 
 
-FROM scratch
-ENV INSIDE_DOCKER="true"                           \
-    PATH="/nix/var/nix/profiles/default/bin:$PATH"
-EXPOSE 5000
-WORKDIR /app
+FROM nixos/nix:latest AS runner
+ENV INSIDE_DOCKER="true"
 COPY --from=builder /tmp/nix-store-closure /nix/store
-COPY --from=builder /tmp/build/result /app
-CMD ["/app/bin/start-prod"]
+COPY . /app
+WORKDIR /app
+CMD ["./bin/start-prod"]
