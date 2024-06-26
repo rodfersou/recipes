@@ -13,14 +13,19 @@ sqlalchemy = "^2.0.31"
 pymysql = "^1.1.1"
 alembic = "^1.13.1"
 cryptography = "^42.0.8"  # pymysql dependency
+gunicorn = "^22.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.2"
 pytest-beeprint = "^0.1.2"
 polyfactory = "^2.16.0"
+ipython = "^8.25.0"
 
 [tool.poetry.scripts]
 start = "app.api:start"
+start-prod = "bash_runner:start_prod"
+test = "bash_runner:test"
+ipython = "IPython:start_ipython"
 
 [build-system]
 requires = ["poetry-core"]

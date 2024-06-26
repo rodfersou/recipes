@@ -1,6 +1,3 @@
 #! /usr/bin/env nix develop --command bash
 cd -P "$(dirname "$0")/.."
-
-rm -rf .venv
-./scripts/bootstrap
-pre-commit install
+ruff format .

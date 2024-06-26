@@ -14,10 +14,9 @@ services:
     volumes:
       - db_data:/var/lib/mysql
   api:
-    image: recipes-api:latest
-    #build: 
-    #  context: .
+    image: ghcr.io/rodfersou/recipes-api:latest
     environment:
+      DEBUG: false
       ORM_URL: mysql+pymysql://user:password@db/mydatabase
     platform: linux/amd64
     ports:
