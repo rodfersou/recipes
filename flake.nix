@@ -21,11 +21,11 @@
             unstable.isort
             unstable.mypy
             unstable.poetry
-            unstable.pre-commit
             unstable.ruff
           ] ++ (
             if ("$INSIDE_DOCKER" != "true")
             then [
+              unstable.pre-commit
               entr
               flyctl
               httpie

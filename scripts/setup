@@ -3,4 +3,7 @@ cd -P "$(dirname "$0")/.."
 
 rm -rf .venv
 ./scripts/bootstrap
-pre-commit install
+if [[ $INSIDE_DOCKER != "true" ]]
+then
+  pre-commit install
+fi
