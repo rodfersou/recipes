@@ -16,6 +16,7 @@
         devShell = mkShell {
           name = "dev-environment";
           nativeBuildInputs = [
+            bash
             python311
             unstable.isort
             unstable.mypy

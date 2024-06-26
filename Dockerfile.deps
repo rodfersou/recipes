@@ -1,10 +1,9 @@
 FROM nixos/nix:latest AS deps
-ENV INSIDE_DOCKER="true"
-COPY . /tmp/build
-WORKDIR /tmp/build
+ENV PATH="/nix/var/nix/profiles/default/bin:$PATH" \
+    INSIDE_DOCKER="true"
+COPY . /app
+WORKDIR /app
 RUN nix                                                   \
     --extra-experimental-features "nix-command flakes"    \
     --option filter-syscalls false                        \
-    build                                                 \
- && mkdir /tmp/nix-store-closure                          \
- && cp -R $(nix-store -qR result/) /tmp/nix-store-closure
+    build
