@@ -1,4 +1,4 @@
-#! /usr/bin/env nix develop --command bash
+#!/usr/bin/env -S nix develop --command bash
 cd "$(dirname "$0")/.."
 ./scripts/bootstrap
 alembic upgrade head

@@ -1,4 +1,4 @@
-#! /usr/bin/env nix develop --command bash
+#!/usr/bin/env -S nix develop --command bash
 cd -P "$(dirname "$0")/.."
 
 rm -rf .venv
