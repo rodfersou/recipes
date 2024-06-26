@@ -37,10 +37,15 @@ CONFIG_NIX_CONF
          --init none                                \
          --no-confirm
     nix build
+
     ./scripts/setup
 
+    #mkdir /tmp/nix-store-closure
+    #cp -R $(nix-store -qR result/) /tmp/nix-store-closure
+    #nix-collect-garbage -d
+    #cp -RT /tmp/nix-store-closure /nix/store
+
     # CLEAN
-    nix-collect-garbage -d
     apt-get clean
     apt-get autoremove -y
     rm -rf /var/lib/apt/lists/*
