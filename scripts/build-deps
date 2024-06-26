@@ -1,7 +1,0 @@
-#!/bin/bash
-cd -P "$(dirname "$0")/.."
-
-echo $PAT | docker login ghcr.io -u rodfersou --password-stdin
-docker buildx build -f Dockerfile.deps --progress plain --platform linux/amd64 -t recipes-api-deps .
-docker tag recipes-api-deps:latest ghcr.io/rodfersou/recipes-api-deps:latest
-docker push ghcr.io/rodfersou/recipes-api-deps:latest
