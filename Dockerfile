@@ -15,4 +15,4 @@ ENV INSIDE_DOCKER="true"
 COPY --from=builder /tmp/nix-store-closure /nix/store
 COPY . /app
 WORKDIR /app
-CMD ["./bin/start-prod"]
+CMD ["./scripts/start-prod"]
