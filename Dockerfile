@@ -38,7 +38,6 @@ CONFIG_NIX_CONF
          --extra-conf "filter-syscalls = false"     \
          --init none                                \
          --no-confirm
-    mkdir -p $POETRY_CACHE_DIR
 
     # CLEAN
     nix-collect-garbage -d
