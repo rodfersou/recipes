@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for recipes-rfs on 2024-06-26T23:23:03+08:00
+# fly.toml app configuration file generated for recipes-rfs on 2024-06-27T09:33:21+08:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -7,6 +7,10 @@ app = 'recipes-rfs'
 primary_region = 'nrt'
 
 [build]
+  image = 'ghcr.io/rodfersou/recipes-api:latest'
+
+[env]
+  ORM_URL = 'mysql+pymysql://user:password@mysql-rfs.internal/mydatabase'
 
 [http_service]
   internal_port = 5000
@@ -20,10 +24,3 @@ primary_region = 'nrt'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-
-[mounts]
-  source = "nix"
-  destination = "/nix"
-
-[env]
-  ORM_URL = "mysql+pymysql://user:password@mysql-rfs.internal/mydatabase"
