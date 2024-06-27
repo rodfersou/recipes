@@ -14,6 +14,8 @@ primary_region = 'nrt'
   ORM_URL = 'mysql+pymysql://user:password@mysql-rfs.internal/mydatabase'
 
 [http_service]
+  http_checks = []
+  tcp_checks = []
   internal_port = 5000
   force_https = true
   auto_stop_machines = true

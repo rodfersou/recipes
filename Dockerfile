@@ -46,4 +46,5 @@ CONFIG_NIX_CONF
     apt-get autoremove -y
     rm -rf /var/lib/apt/lists/*
 DOCKER_AFTER
+EXPOSE 5000
 CMD ["./scripts/start-prod"]
