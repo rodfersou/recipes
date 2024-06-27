@@ -1,9 +1,8 @@
 #!/usr/bin/env -S nix develop --command bash
 cd -P "$(dirname "$0")/.."
 
-rm -rf .venv
+rm -rf $(poetry env info -p)
 ./scripts/bootstrap
-if [[ $INSIDE_DOCKER != "true" ]]
-then
+if [[ $INSIDE_DOCKER != "true" ]]; then
   pre-commit install
 fi
