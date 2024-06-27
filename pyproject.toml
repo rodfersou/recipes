@@ -22,8 +22,6 @@ polyfactory = "^2.16.0"
 ipython = "^8.25.0"
 
 [tool.poetry.scripts]
-echo-path = "app.scripts:echo_path"
-ipython = "app.scripts:ipython"
 start = "app.api:start"
 start-prod = "app.scripts:start_prod"
 test = "app.scripts:test"
