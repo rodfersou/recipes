@@ -23,8 +23,12 @@ services:
       - "5000:5000"
     volumes:
       - .:/app
+      - nix:/nix
+      - cache:/cache
     depends_on:
       - db
 
 volumes:
   db_data:
+  nix:
+  cache:

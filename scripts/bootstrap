@@ -1,4 +1,3 @@
 #!/usr/bin/env -S nix develop --command bash
 cd -P "$(dirname "$0")/.."
-nix build
 poetry install

@@ -24,8 +24,7 @@
             unstable.poetry
             unstable.ruff
           ] ++ (
-            if ("$INSIDE_DOCKER" != "true")
-            then [
+            if ("$INSIDE_DOCKER" != "true") then [
               unstable.pre-commit
               entr
               flyctl
@@ -41,14 +40,13 @@
             ]
           );
           shellHook = ''
-            if [[ $INSIDE_DOCKER != "true" ]]
-            then
+            if [[ $INSIDE_DOCKER != "true" ]]; then
               export POETRY_VIRTUALENVS_IN_PROJECT="true"
             fi
             unset PYTHONPATH
             poetry env use ${python311.executable}
         
-            export PATH="$PWD/.venv/bin:$PATH"
+            export PATH="$(poetry env info -p)/bin:$PATH"
           '';
         };
       }
