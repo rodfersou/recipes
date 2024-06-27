@@ -14,10 +14,7 @@ def page_not_found(error) -> tuple[dict, int]:
 def create_app():
     from app.recipes.api import views  # noqa: F401
 
-    swagger_config = {
-        "specs_route": config.SPECS_ROUTE,
-    }
-    Swagger(app, config=swagger_config, merge=True)
+    Swagger(app)
     return app
 
 
