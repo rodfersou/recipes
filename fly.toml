@@ -10,6 +10,7 @@ primary_region = 'nrt'
   image = 'ghcr.io/rodfersou/recipes-api:latest'
 
 [env]
+  DEBUG = 'false'
   ORM_URL = 'mysql+pymysql://user:password@mysql-rfs.internal/mydatabase'
 
 [http_service]
