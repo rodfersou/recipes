@@ -3,9 +3,8 @@ FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV PATH="/nix/var/nix/profiles/default/bin:$PATH" \
+    POETRY_CACHE_DIR="/cache/poetry"               \
     INSIDE_DOCKER="true"
-# fly.io don't support multiple volumes
-ENV POETRY_CACHE_DIR="/nix/poetry"
 
 COPY . /app
 WORKDIR /app
@@ -19,6 +18,7 @@ RUN <<DOCKER_BEFORE   bash                                                      
     apt install -y \
         curl
     mkdir -p ~/.config/nix
+    mkdir -p /cache/poetry
 DOCKER_BEFORE
 
 # CONFIG NIX_CONF
@@ -38,9 +38,10 @@ CONFIG_NIX_CONF
          --extra-conf "filter-syscalls = false"     \
          --init none                                \
          --no-confirm
+    nix-collect-garbage -d
+    ./scripts/bootstrap
 
     # CLEAN
-    nix-collect-garbage -d
     apt-get clean
     apt-get autoremove -y
     rm -rf /var/lib/apt/lists/*
